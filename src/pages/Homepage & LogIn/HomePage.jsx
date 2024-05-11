@@ -72,7 +72,10 @@ const HomePage = () => {
                   transform: `translateX(${menuButtonVisible ? '0' : '-1000%'})`,
                   transition: 'transform 0.20s',
                   width: '100%', 
-                  marginBottom: '16px'
+                  marginBottom: '16px',
+                  backgroundColor : '#20B2AA',
+                  color :'black'
+                  
                 }}
               >
                 Menu
@@ -86,7 +89,9 @@ const HomePage = () => {
               style={{
                 transform: `translateX(${tableBookingButtonVisible ? '0' : '1000%'})`,
                 transition: 'transform 0.20s',
-                width: '100%'
+                width: '100%',
+                backgroundColor : '#20B2AA',
+                color :'black'
               }}
             >
               Table Booking
