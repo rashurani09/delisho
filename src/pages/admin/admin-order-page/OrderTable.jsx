@@ -1,11 +1,13 @@
 import  { useState, useEffect } from 'react';
 import { Table, Space, Modal } from 'antd';
-import { getData } from "./../../../services/orders";
+import { getData } from "../../../services/orders/orders";
+import { TranslateFunction } from "../../../util/internationalization";
 
 export default function OrderTable() {
   const [data, setData] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [modalVisible, setModalVisible] = useState(false); 
+  const heading = TranslateFunction("label");
 
   const columns = [
     {
@@ -65,7 +67,7 @@ export default function OrderTable() {
 
   return (
     <>
-      <h1 className="heading">Orders Table</h1>
+      <h1 className="heading">{heading("Order Table")}</h1>
       <Table
         className="app"
         columns={columns}

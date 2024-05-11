@@ -1,11 +1,12 @@
-import {  getData } from "./../../../services/orders";
+import {  getData } from "../../../services/orders/orders";
 import { useState, useEffect } from 'react';
 import { Row  ,Col , Typography,Card , Flex}  from 'antd';
-
+import { TranslateFunction } from "../../../util/internationalization";
 
 
 export default function OrderTable() {
   const [data, setData] = useState(null);
+  const heading = TranslateFunction("label");
 
   useEffect(() => {
     fetchData();
@@ -30,7 +31,7 @@ export default function OrderTable() {
 
   return (
     <>
-    <h1 className="heading">Time Wise List</h1>
+    <h1 className="heading">{heading("Time Wise List")}</h1>
 
    <Row style={{  padding : '10px 5%'}}>
     {

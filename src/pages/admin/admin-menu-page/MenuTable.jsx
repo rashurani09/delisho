@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Table, Space, Modal, Button, Form, Col } from 'antd';
-import { remove, getKeyBasedData } from "./../../../services/menu";
+import { remove, getKeyBasedData } from "../../../services/Menu/menu";
 import MultiStepRouter from './multiStepForm/MultiStepForm';
+import { TranslateFunction } from "../../../util/internationalization";
+
 
 export default function MenuTable({ selectedObj, setUpdatedCount, data, setData }) {
   const [filteredData, setFilteredData] = useState(null);
@@ -10,6 +12,8 @@ export default function MenuTable({ selectedObj, setUpdatedCount, data, setData 
   const payload = useRef({ operation: "ADD", data: {} });
   const [dishGroupOptions, setDishGroupOptions] = useState([]);
   const [cuisineOptions, setCuisineOptions] = useState([]);
+  const button = TranslateFunction("labels");
+
 
   function filterMenu(dishList, selectedObj) {
     return dishList.filter((dish) => {
@@ -47,10 +51,10 @@ export default function MenuTable({ selectedObj, setUpdatedCount, data, setData 
         priceObj[op] = option.amount;
 
   })
-  console.log("priceObj",priceObj)
+ 
   payload.current.data.price = priceObj;
       form.setFieldsValue(payload.current.data)
-      console.log("payyyyyyyyy", payload)
+    
     }
    else {
     form.resetFields();
@@ -65,7 +69,8 @@ export default function MenuTable({ selectedObj, setUpdatedCount, data, setData 
   };
 
   function deleteDish(record) {
-    remove(data, record.foodId).then(res => {
+    console.log("dele",record)
+    remove(data, record.foodId,"foodId").then(res => {
       setData(res);
     });
   }
@@ -82,30 +87,30 @@ export default function MenuTable({ selectedObj, setUpdatedCount, data, setData 
 
   const columns = [
     {
-      title: 'Image',
+      title: button('Image'),
       dataIndex: 'url',
       key: 'profilePicture',
       render: (dataIndexValue, record) => <img style={{ maxWidth: '200px', maxHeight: '80px' }} src={dataIndexValue} alt={record.name} />
     },
     {
-      title: 'Dish Name',
+      title: button('Dish Name'),
       dataIndex: 'dishName',
       key: 'dishName'
     },
     {
-      title: 'Dish Group',
+      title: button('Dish Group'),
       dataIndex: 'dishGroup',
       key: 'dishGroup',
     },
 
     {
-      title: 'Cuisine',
+      title: button('Cuisine'),
       dataIndex: 'cuisine',
       key: 'cuisine',
 
     },
     {
-      title: 'Price',
+      title: button('Price'),
       dataIndex: '',
       key: 'price',
       render: (index, dish) => {
@@ -116,7 +121,7 @@ export default function MenuTable({ selectedObj, setUpdatedCount, data, setData 
       }
     },
     {
-      title: 'Actions',
+      title: button('Actions'),
       key: 'action',
       className: 'button',
       render: (_, record) => (
@@ -131,7 +136,7 @@ export default function MenuTable({ selectedObj, setUpdatedCount, data, setData 
   return (
     <>
     
-      <Button style={{ marginLeft: '1060px', padding: '0 20px' }} type="primary" onClick={addItem}>Add Item</Button>
+      <Button style={{ marginLeft: '1060px', padding: '0 20px' }} type="primary" onClick={addItem}>{button("add Item")}</Button>
       <Col style={{ marginLeft: '20%' }}>
         <Table
           className="app"

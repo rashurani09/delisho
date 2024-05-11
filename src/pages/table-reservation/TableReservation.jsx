@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import MultiStepRouter from "../user/user-table-reservation/UserTableReservation";
-import { getData} from "./../../services/TableBooking";
+import { getData} from "./../../services/seatings/TableBooking";
 import AdminSeatingsPage from "../admin/admin-seating-page/AdminSeatingsPage";
 
 export default function TableReservation(){

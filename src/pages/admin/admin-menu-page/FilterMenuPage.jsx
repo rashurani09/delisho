@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Select, Space  ,Typography} from "antd";
-import {  getKeyBasedData } from "../../../services/menu";
+import {  getKeyBasedData } from "../../../services/Menu/menu";
+import { TranslateFunction } from "../../../util/internationalization";
 
 const Filters = ({ selectedObj, setSelectedObj ,updatedCount ,data , setData}) => {
   const [cuisineOptions, setCuisineOptions] = useState([]);
   const [dishGroupOptions, setDishGroupOptions] = useState([]);
   const [count, setCount] = useState(0);
-
+  const heading = TranslateFunction("labels");
 
   useEffect(() => {
    console.log( "updated")
@@ -45,10 +46,10 @@ const Filters = ({ selectedObj, setSelectedObj ,updatedCount ,data , setData}) =
           padding : '1%'
         }}
       >
-        <Typography.Title level={5}>Filters</Typography.Title>
+        <Typography.Title level={5}>{heading("Filters")}</Typography.Title>
         <Select
           mode="multiple"
-          placeholder="Select Cuisines"
+          placeholder={heading("Select Cuisines")}
           defaultValue={[]}
           onChange={handleSelectedItems}
           onDeselect={handleDeselect}
@@ -60,7 +61,7 @@ const Filters = ({ selectedObj, setSelectedObj ,updatedCount ,data , setData}) =
 
         <Select
           mode="multiple"
-          placeholder="Dish Group"
+          placeholder= {heading("Dish Group")}
           defaultValue={[]}
           onChange={handleSelectedItems}
           onDeselect={handleDeselect}

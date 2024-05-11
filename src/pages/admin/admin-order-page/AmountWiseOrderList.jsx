@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import {  getData } from "./../../../services/orders";
-
+import {  getData } from "../../../services/orders/orders";
+import { TranslateFunction } from "../../../util/internationalization";
 import { Table ,Card ,Row , Flex ,Typography, Col} from 'antd';
 
 export default function OrderTable() {
   const [data, setData] = useState([]);
-
+  const heading = TranslateFunction("label");
   useEffect(() => {
     fetchData();
   }, []);
@@ -40,7 +40,7 @@ getData().then(data =>{
 
   return (
 <>
-<h1 className="heading">Amount Wise Order List</h1>
+<h1 className="heading">{heading("Amount Wise Order List")}</h1>
 
 <Row style={{  padding : '10px 5%'}}>
   <Flex style={{flexDirection : 'row'}}>

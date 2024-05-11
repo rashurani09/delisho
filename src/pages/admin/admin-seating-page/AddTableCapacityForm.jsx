@@ -1,5 +1,5 @@
 import { Button, Form, Input } from "antd";
-import { updateData } from "../../../services/TableBooking";
+import { updateData } from "../../../services/seatings/TableBooking"
 
 
 

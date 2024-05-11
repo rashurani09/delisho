@@ -1,10 +1,11 @@
 import { Card, Modal, Form, Row, Col, Button, Typography ,Flex ,Divider} from "antd";
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { getData, removeObj } from "./../../../services/TableBooking";
+import { getData, removeObj } from "./../../../services/seatings/TableBooking";
 import { useEffect, useRef, useState } from "react";
 import SingleStepForm from "./CreateUpdateSeatingForm";
 import BookingDetails from "./BookingDetails";
 import AddTableCapacityForm from "./AddTableCapacityForm";
+import { TranslateFunction } from "../../../util/internationalization";
 
 export default function Dinner({data}) {
   const [dinnerData, setDinnerData] = useState(null);
@@ -17,6 +18,7 @@ export default function Dinner({data}) {
   const [addTableModal, setAddTableModalForm] = useState(false);
   const [form] = Form.useForm();
   let payload = useRef(null);
+  const heading = TranslateFunction("label");
 
   useEffect(() => {
  
@@ -57,7 +59,7 @@ export default function Dinner({data}) {
   return (
     <>
       <Flex style={{ marginTop: '60px', marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography.Title level={2} style={{ margin: 0 }}>Dinner</Typography.Title>
+        <Typography.Title level={2} style={{ margin: 0 }}>{heading("Dinner")}</Typography.Title>
 
         {/* Add Button */}
         <Button onClick={handleTables} style={{ fontWeight: "bold", backgroundColor: "#FFD700" }}>Add Table</Button>

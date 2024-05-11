@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { getData } from "./../../../services/orders";
+import { getData } from "../../../services/orders/orders";
 import { Typography, Card, Flex, Col } from "antd";
+import { TranslateFunction } from "../../../util/internationalization";
 
 export default function TopDishList() {
   const [data, setData] = useState([]);
+  const heading = TranslateFunction("label");
 
   useEffect(() => {
     fetchData();
@@ -50,7 +52,7 @@ export default function TopDishList() {
 
   return (
     <>
-      <h1 className="heading">Top Five Dishes List</h1>
+      <h1 className="heading">{heading("Top Five Dishes List")}</h1>
 
       <Flex style={{ flexDirection: "row"  , justifyContent: 'space-around' , padding : '10px 5%'}}>
         {data.map((dish ,index) => {

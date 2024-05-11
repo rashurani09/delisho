@@ -1,16 +1,25 @@
 
 const crud = {
-
+  get : function(list){
+    return list;
+  },
+  
   add: function (list, newObj) {
     let newList = [...list, newObj];
     return newList;
   },
 
-  remove: function (list, id ) {
-    return list.filter((item) => {
-      return item!= id;
-    });
-  },
+  remove: function(list, id, pk){
+    if(pk)
+    return list.filter((item)=>{
+        return item[pk] !== id;
+    })
+    else
+    return list.filter((item)=>{
+      return item !== id;
+  })
+},
+
 
   update: function (list, obj, pk, time) {
     let newList = list.map((item) => {

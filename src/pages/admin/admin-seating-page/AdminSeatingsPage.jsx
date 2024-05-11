@@ -2,8 +2,8 @@ import {  Flex } from "antd";
 import Dinner from "./DinnerSeatings";
 import Lunch from "./LunchSeatings";
 import { useEffect, useState } from "react";
-import { getData } from "./../../../services/TableBooking";
-
+import { getData } from "./../../../services/seatings/TableBooking";
+import './../style.css'
 
 export default function AdminSeatingsPage() {
 

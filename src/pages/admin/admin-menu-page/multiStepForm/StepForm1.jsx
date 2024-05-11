@@ -1,10 +1,11 @@
 import { Form, Input, Button ,Select, Radio ,Flex} from "antd";
 import { useState } from "react";
-
+import { TranslateFunction } from "./../../../../util/internationalization";
 
 export default function StepForm1({ form, back, next, payload ,dishGroupOptions }){
 
   const [showOtherInput, setShowOtherInput] = useState(false);
+  const heading = TranslateFunction("labels");
 
   function showNextForm (values) {
   payload.current.data = { ...payload.current.data, ...values };
@@ -26,7 +27,7 @@ export default function StepForm1({ form, back, next, payload ,dishGroupOptions 
     onFinish={showNextForm} form={form} autoComplete="off">
 
     <Form.Item
-    label="Dish Name" name="dishName"
+    label={heading("Dish Name")} name="dishName"
     rules={[
     {
         required: true, message: "Please input !",
@@ -38,7 +39,7 @@ export default function StepForm1({ form, back, next, payload ,dishGroupOptions 
     </Form.Item>
 
     <Form.Item
-          label="Dish Group"
+          label={heading("Dish Group")}
           name="dishGroup"
           rules={[
             {
@@ -59,7 +60,7 @@ export default function StepForm1({ form, back, next, payload ,dishGroupOptions 
 
         {showOtherInput && (
           <Form.Item
-            label="New Dish Group"
+            label={heading("New Dish Group")}
             name="dishGroup"
             rules={[
               {
@@ -73,7 +74,7 @@ export default function StepForm1({ form, back, next, payload ,dishGroupOptions 
         )}
 
 
-    <Form.Item label="Meal Type" name="mealType"
+    <Form.Item label={heading("Meal Type")} name="mealType"
     rules={[
         {
         required: true, message: "Please input !",
@@ -81,13 +82,13 @@ export default function StepForm1({ form, back, next, payload ,dishGroupOptions 
         ]}
     >
           <Radio.Group>
-          <Radio value="breakfast">Breakfast</Radio>
-            <Radio value="lunch">lunch</Radio>
-            <Radio value="dinner">Dinner</Radio>
+          <Radio value="breakfast">{heading("Breakfast")}</Radio>
+            <Radio value="lunch">{heading("lunch")}</Radio>
+            <Radio value="dinner">{heading("dinner")}</Radio>
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item label="Is Gluten Free" name="isGlutenFree"
+        <Form.Item label={heading("Is Gluten Free")} name="isGlutenFree"
     rules={[
         {
         required: true, message: "Please input !",
@@ -95,12 +96,12 @@ export default function StepForm1({ form, back, next, payload ,dishGroupOptions 
         ]}
     >
           <Radio.Group>
-          <Radio value={true}>true</Radio>
-            <Radio value= {false}>false</Radio>
+          <Radio value={true}>{heading("true")}</Radio>
+            <Radio value= {false}>{heading("false")}</Radio>
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item label="Is Veg" name="isVeg"
+        <Form.Item label={heading("is Veg")} name="isVeg"
     rules={[
         {
         required: true, message: "Please input !",
@@ -108,18 +109,18 @@ export default function StepForm1({ form, back, next, payload ,dishGroupOptions 
         ]}
     >
           <Radio.Group>
-          <Radio value={true}>true</Radio>
-            <Radio value= {false}>false</Radio>
+          <Radio value={true}>{heading("true")}</Radio>
+            <Radio value= {false}>{heading("false")}</Radio>
           </Radio.Group>
         </Form.Item>
 
     <Form.Item >
     <Flex style={{ justifyContent: "space-between" , marginTop : '5%'}}>
             <Button type="primary" style={{marginLeft :'15%'}} onClick={back}>
-             Cancel
+             {heading("Cancel")}
             </Button>
             <Button type="primary" style={{marginLeft :'80%'}}  htmlType="submit">
-              Next
+              {heading("Next")}
             </Button>
           </Flex>
     </Form.Item>

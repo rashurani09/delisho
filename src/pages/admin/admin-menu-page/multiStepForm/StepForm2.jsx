@@ -1,5 +1,5 @@
 import { Button, Form, Select, Input, Flex } from "antd";
-import { addObj, updateObj } from "../../../../services/menu";
+import { addObj, updateObj } from "../../../../services/Menu/menu";
 import { useState } from "react";
 
 export default function StepForm2({
