@@ -73,7 +73,7 @@ const HomePage = () => {
                   transition: 'transform 0.20s',
                   width: '100%', 
                   marginBottom: '16px',
-                  backgroundColor : '#FFDAB9b',
+                  backgroundColor : '#FFDAB9',
                   color :'black'
                   
                 }}
