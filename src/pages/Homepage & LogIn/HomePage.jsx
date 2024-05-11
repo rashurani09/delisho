@@ -73,7 +73,7 @@ const HomePage = () => {
                   transition: 'transform 0.20s',
                   width: '100%', 
                   marginBottom: '16px',
-                  backgroundColor : '#20B2AA',
+                  backgroundColor : '#FFDAB9b',
                   color :'black'
                   
                 }}
@@ -90,7 +90,7 @@ const HomePage = () => {
                 transform: `translateX(${tableBookingButtonVisible ? '0' : '1000%'})`,
                 transition: 'transform 0.20s',
                 width: '100%',
-                backgroundColor : '#20B2AA',
+                backgroundColor : '#FFDAB9',
                 color :'black'
               }}
             >
