@@ -1,22 +1,21 @@
 import {
-  CoffeeOutlined,
+  UserOutlined,
+  UserDeleteOutlined,
   PercentageOutlined,
   ShoppingCartOutlined,
-  UserOutlined,
   ReadOutlined,
-  MoreOutlined
 } from "@ant-design/icons";
-import { Image, Layout, Menu } from "antd";
+import { Button,  Layout, Menu, theme } from "antd";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Offers from "./Offers";
-import SignIn from "./SignIn";
-
-// import Cart from "../OrderBooking & Cart/Cart";
-import { TranslateFunction } from "./../../util/internationalization";
-import { navList } from "../../structure/Navigation";
+import Cart from "../OrderBooking & Cart/Cart";
+import { TranslateFunction } from "../../util/internationalization";
+import LanguageSelector from "./../admin/LanguageSelector";
 import { isAuthorisedRoute } from "../../structure/RenderRoutes";
 import { AuthData } from "../../structure/AuthWrapper";
+import { navList } from "../../structure/Navigation";
+
 const { Header } = Layout;
 
 const Navbar = () => {
@@ -24,7 +23,7 @@ const Navbar = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [offersModalVisible, setOffersModalVisible] = useState(false);
   const [cart, setCart] = useState(false);
-  const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false); // State for language dropdown visibility
+  const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false);
 
   const showModal = () => {
     setModalVisible(true);
@@ -52,48 +51,41 @@ const Navbar = () => {
 
   const toggleCart = () => setCart((prev) => !prev);
 
-  const toggleLanguageDropdown = () => setLanguageDropdownVisible((prev) => !prev); // Function to toggle language dropdown visibility
+  const toggleLanguageDropdown = () => setLanguageDropdownVisible((prev) => !prev);
+  // const nav = useNavigate()
+  // const { user, logout } = AuthData()
+
 
   const items = [
-  
+  //   ...navList.map((r, i) => {
+  //     if (isAuthorisedRoute(user, r, true)) {
+  //       return { key: r.path, label: r.name, to: r.path };
+  //     }
+  //   }).filter(item => item),
     {
-      key: "1",
-      label: "Home",
-      icon: <CoffeeOutlined />,
-      to: "/",
-    },
-    {
-      key: "2",
-      label: "Sign In",
-      icon: <UserOutlined />,
-      onClick: showModal,
-    },
-    {
-      key: "3",
+      key: "offers",
       label: "Offers",
       icon: <PercentageOutlined />,
       onClick: showOffersModal,
     },
-    // {
-    //   key: "4",
-    //   label: "Cart",
-    //   icon: <ShoppingCartOutlined />,
-    //   onClick: toggleCart,
-    // },
     {
-      key: '5',
-      label: "Language",
-      icon: <ReadOutlined />,
-      onClick: toggleLanguageDropdown, // Add onClick handler to toggle language dropdown visibility
+      key: "cart",
+      label: "Cart",
+      icon: <ShoppingCartOutlined />,
+      onClick: toggleCart,
     },
     {
-      key:'6',
+      key: "language",
+      label: "Language",
+      icon: <ReadOutlined />,
+      onClick: toggleLanguageDropdown,
+    },
+    {
+      key : "admin",
       label : "Admin",
-   
-      to: "/admin/*"
+      to : "./admin/*"
     }
   ];
-
   return (
     <Header
       style={{
@@ -113,19 +105,39 @@ const Navbar = () => {
           alt="Logo"
         />
       </div>
-
+  
       <Menu
         mode="horizontal"
         defaultSelectedKeys={["1"]}
         style={{
-          flex: 1,
-          minWidth: 0,
-          marginLeft: "50%",
-          backgroundColor: "black",
-          width: 800,
+          backgroundColor:"black",
+          width: "50%",
+          marginLeft:"60%",
+          justifyContent:"space-evenly"
         }}
       >
-        {items.map((item) => (
+        {items.slice(0, 2).map((item) => (
+          <Menu.Item
+            key={item.key}
+            style={{ color: "white" }}
+            onClick={item.onClick}
+          >
+            <Link to={item.to}>
+              {item.icon} {labels(item.label)}
+            </Link>
+          </Menu.Item>
+        ))}
+      </Menu>
+  
+      <Menu
+        mode="horizontal"
+        defaultSelectedKeys={["1"]}
+        style={{
+          backgroundColor:"black",
+          width: "50%",
+        }}
+      >
+        {items.slice(2).map((item) => (
           <Menu.Item
             key={item.key}
             style={{ color: "white" }}
@@ -133,32 +145,50 @@ const Navbar = () => {
           >
             {item.to ? (
               <Link to={item.to}>
-                {item.icon} {item.label}
+                {item.icon} {labels(item.label)}
               </Link>
             ) : (
               <>
-                {item.icon} {item.label}
+                {item.icon} {labels(item.label)}
               </>
             )}
           </Menu.Item>
         ))}
       </Menu>
-
-      {/* <SignIn
-        visible={modalVisible}
-        handleCancel={handleCancel}
-        handleOk={handleOk}
-      /> */}
+  
       <Offers
         visible={offersModalVisible}
         handleCancel={handleOffersCancel}
         handleOk={handleOffersOk}
+        style={{ backgroundColor: "red" }}
       />
       {/* <Cart visible={cart} handleCancel={toggleCart} handleOk={toggleCart} /> */}
-
+  
       {languageDropdownVisible && <LanguageSelector />}
+      {/* <div>
+        {user.isAuthenticated ? (
+          <div className="menuItem">
+            <Link to={"#"} onClick={logout}>
+              <Button style={{ backgroundColor: "transparent", color:"white", border:"0" }}>
+              <UserDeleteOutlined/>
+                {labels("Log Out")}
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="menuItem">
+            <Link to={"login"}>
+              <Button style={{ backgroundColor: "transparent", color:"white" , border:"0"}}>
+              <UserOutlined />
+              {labels("Log In")}
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div> */}
     </Header>
   );
+  
 };
 
 export default Navbar;

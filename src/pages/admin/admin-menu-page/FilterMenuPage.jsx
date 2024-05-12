@@ -33,7 +33,7 @@ const Filters = ({ selectedObj, setSelectedObj ,updatedCount ,data , setData}) =
 
   return (
     <>
-      <Space
+    {  data && (<Space
         direction="vertical"
         style={{
           width: "10%",
@@ -70,7 +70,7 @@ const Filters = ({ selectedObj, setSelectedObj ,updatedCount ,data , setData}) =
           }}
           options={dishGroupOptions}
         />
-      </Space>
+      </Space>)}
     </>
   );
 };

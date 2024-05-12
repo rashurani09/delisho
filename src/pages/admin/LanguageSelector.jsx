@@ -1,19 +1,20 @@
-import { Button } from "antd";
-import { changeLanguage } from "./../../util/internationalization";
-import { languages } from "./../../util/internationalization";
+import React from "react";
+import { Menu } from "antd";
+import { changeLanguage, languages } from "./../../util/internationalization";
 
 const LanguageSelector = () => {
-  let options = []
+  const handleChange = (value) => {
+    changeLanguage(value);
+  };
+
   return (
-    <>
-      {languages.map((lng) => {
-        return (
-          <Button key={lng.code} onClick={() => changeLanguage(lng.code)}>
-            {lng.lang}
-          </Button>
-        );
-      })}
-    </>
+    <Menu style={{ position: "absolute", top: "100%", left: '84%' , borderRadius:'10%'}}>
+      {languages.map((lng) => (
+        <Menu.Item key={lng.code} onClick={() => handleChange(lng.code)}>
+          {lng.lang}
+        </Menu.Item>
+      ))}
+    </Menu>
   );
 };
 
