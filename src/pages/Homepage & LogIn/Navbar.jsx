@@ -83,7 +83,7 @@ const Navbar = () => {
     {
       key : "admin",
       label : "Admin",
-      to : "./admin/*"
+      to : "/admin"
     }
   ];
   return (

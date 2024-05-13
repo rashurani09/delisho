@@ -16,8 +16,6 @@ export default function MultiStepRouter({ data }) {
   const [ui, setUi] = useState(UI.Form1);
   const [form] = Form.useForm();
   let payload = useRef({});
-
-  console.log("user", data);
   
   const initFormData = () => {
     payload.current ? form.setFieldValue(payload.current) : form.resetFields();

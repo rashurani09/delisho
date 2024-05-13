@@ -7,9 +7,8 @@ import { Layout } from "antd";
 
 const MenuContainer = ({ next, setSelectedDish }) => {
     const [searchObj, setSearchObj] = useState({});
-    
 
-    return (
+        return (
         <>
         <Layout>
         <Navbar />

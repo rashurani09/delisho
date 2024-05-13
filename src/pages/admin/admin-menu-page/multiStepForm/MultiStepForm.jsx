@@ -1,18 +1,11 @@
-import { useEffect, useState} from "react";
+import { useState} from "react";
 import StepForm1 from "./StepForm1";
 import StepForm2 from "./StepForm2";
 
-
-const UI = {
-  Form1: "form1",
-  Form2: "form2",
-};
+const UI = { Form1: "form1", Form2: "form2" };
 
 export default function MultiStepRouter({setIsModalOpen , dishGroupOptions, cuisineOptions, data, setData ,payload, form ,setUpdatedCount}) {
- 
   const [ui, setUi] = useState(UI.Form1);
-
-
   return (
     <>
       {ui === UI.Form1 && (
@@ -32,11 +25,8 @@ export default function MultiStepRouter({setIsModalOpen , dishGroupOptions, cuis
           cuisineOptions = {cuisineOptions}
           payload={payload}
             data = {data}
-            setData = {setData}
-         
+            setData = {setData} 
         />
       )}
-  
     </>
-  );
-}
+  ); }

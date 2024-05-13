@@ -2,25 +2,13 @@ import { Button, Form, Select, Input, Flex } from "antd";
 import { addObj, updateObj } from "../../../../services/Menu/menu";
 import { useState } from "react";
 
-export default function StepForm2({
-  back,
-  form,
-
-  success,
-  payload,
-  setData,
-  data,
-  cuisineOptions,
-}) {
-  console.log("payload",payload)
-
+export default function StepForm2({ back,form, success, payload, setData, data, cuisineOptions,}) {
 
   const [foodId, setFoodId] = useState(data.length + 1);
   const [showOtherInput, setShowOtherInput] = useState(false);
   const [quantityType, setQuantity] = useState("sml");
 
   const submitForm = (values) => {  
-    console.log("hhhhh",values)
     if (!payload.current.data.foodId) {
       payload.current.data.foodId = foodId;
       payload.current.data.key = foodId - 1;
