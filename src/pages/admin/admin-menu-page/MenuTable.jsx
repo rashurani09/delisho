@@ -4,28 +4,47 @@ import { remove, getKeyBasedData } from "../../../services/Menu/menu";
 import MultiStepRouter from './multiStepForm/MultiStepForm';
 import { TranslateFunction } from "../../../util/internationalization";
 
+const filterMenu = (dishes, selectedObj) => {
+  return dishes.filter((dish) => {
+    console.log("dishhhhh", dish)
+    if (
+      !selectedObj ||
+      (!Array.isArray(selectedObj.cuisineOptions) || selectedObj.cuisineOptions.length === 0 || selectedObj.cuisineOptions.some((cuisineOptions) => dish.cuisine.includes(cuisineOptions))) &&
+      (!Array.isArray(selectedObj.dishGroupOptions) || selectedObj.dishGroupOptions.length === 0 || selectedObj.dishGroupOptions.some((dishGroupOptions) => dish.dishGroup.includes(dishGroupOptions)))
+    ) {
+      return true;
+    }
+    return false;
+  });
+};
 
 export default function MenuTable({ selectedObj, setUpdatedCount, data, setData }) {
-  const [filteredData, setFilteredData] = useState(null);
+  const [filteredData, setFilteredData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
   const payload = useRef({ operation: "ADD", data: {} });
   const [dishGroupOptions, setDishGroupOptions] = useState([]);
   const [cuisineOptions, setCuisineOptions] = useState([]);
   const button = TranslateFunction("labels");
+console.log("errorrr", data);
 
-
-  function filterMenu(dishList, selectedObj) {
-    return dishList.filter((dish) => {
-      if ((selectedObj.length === 0 || selectedObj.some((obj) => obj === dish.cuisine)) || (selectedObj.length === 0 || selectedObj.some((obj) => obj === dish.dishGroup))) {
-        return true;
-      }
-      return false;
-    });
-  }
+  // function filterMenu(dishList, selectedObj) {
+  //   console.log("goes");
+  //   let arr =  dishList.filter((dish) => {
+  //     if ((Object.keys(selectedObj).length === 0 || Object.keys(selectedObj).some((obj) => obj === dish.cuisine)) || (Object.keys(selectedObj).length === 0 || Object.keys(selectedObj).some((obj) => obj === dish.dishGroup))) {
+  //       return true;
+  //     }
+  //     return false;
+  //     // return dish
+     
+  //   });
+  //   console.log("arr",arr)
+  //   return arr;
+  // }
 
   useEffect(() => {
     if (data && selectedObj) {
+      console.log("data", data, selectedObj);
       let filteredMenu = filterMenu(data, selectedObj);
       setFilteredData(filteredMenu);
     }
@@ -132,7 +151,7 @@ export default function MenuTable({ selectedObj, setUpdatedCount, data, setData 
       ),
     },
   ];
-
+  console.log("searchObj", selectedObj)
   return (
     <>
     
